@@ -56,4 +56,38 @@ def partall():
     else:
         print("Dette tallet er et partall")
 
-partall()
+
+def karaktersjekker():
+    poengscore = int(input("Skriv inn din poengscore: "))
+
+    if poengscore > 100 or poengscore < 0:
+        print("Ugyldig poengscore")
+    else: 
+        if poengscore <= 20:
+            print("Du har fått karakter 1!")
+        elif poengscore <= 40:
+            print("Du har fått karakter 2!")
+        elif poengscore <= 60:
+            print("Du har fått karakter 3!")
+        elif poengscore <= 80:
+            print("Du har fått karakter 4!")
+        elif poengscore <= 90:
+            print("Du har fått karakter 5!")
+        elif poengscore <= 100:
+            print("Du har fått karakter 6!")
+
+
+def temperatur_konvertor():
+    temperatur = float(input("Hvilken temperatur ønsker du å omgjøre?: "))
+    målingsenhet = str(input("Er temperaturen i målenheten C eller F?: "))
+
+    if målingsenhet.upper() == "C":
+        temperatur = temperatur * 1.8 + 32
+        print("Temperaturen er", temperatur, "I Farenheit")
+    elif målingsenhet.upper() == "F":
+        temperatur = (temperatur - 32) / 1.8
+        print("Temperaturen er", temperatur, "I Celsius")
+    else:
+        print("Ugyldig måleenhet")
+
+karaktersjekker()
