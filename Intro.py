@@ -1,3 +1,5 @@
+import random as rd
+
 def hei():
     navn = str(input('Hva heter du? '))
     print('Hei ' + navn)
@@ -100,3 +102,23 @@ def løkke1():
 def løkke2():
     for i in range(1,51):
         print("Denne løkka har gjentatt seg " + str(i) + " antall ganger.")
+
+def kvadrattall():
+    makstall = 100
+    i = 1
+
+    while i**2 <= makstall:
+        print(i**2)
+        i +=1
+    
+def terning():
+    totalsum = 0
+
+    while totalsum != 7:
+        terning1 = rd.randint(1, 6)
+        terning2 = rd.randint(1, 6)
+
+        totalsum = terning1 + terning2
+        print("Terningene viser " + str(terning1) + " og " + str(terning2) +". Summen av terningene er: " + str(totalsum))
+
+terning()
