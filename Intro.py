@@ -90,4 +90,13 @@ def temperatur_konvertor():
     else:
         print("Ugyldig måleenhet")
 
-karaktersjekker()
+
+def løkke1():
+    tekst_bruker = str(input("Skriv inn en tekst!: "))
+
+    for i in tekst_bruker:
+        print(i, end="#")
+    
+def løkke2():
+    for i in range(1,51):
+        print("Denne løkka har gjentatt seg " + str(i) + " antall ganger.")
