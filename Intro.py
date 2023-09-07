@@ -158,6 +158,22 @@ def gjennomsnitt_sum():
     print(f"Summen av tallene fra 1 til og med {n} er {total}.")
     print(f"Gjennomsnittet er {gjennomsnitt}")
 
+def mønster():
+    for i in range (1,4):
+        for j in range (1,6):
+            print("#", end="")
+        print("")
+
+
+def måned():
+    while True:
+        maanednr = int(input("Oppgi nummeret til måneden vi er i: "))
+
+        if maanednr >= 1 and maanednr <=12:
+            print(f"Du skrev inn {maanednr}.")
+            break
+        else:
+            print("Du må oppgi et tall mellom 1 til 12.")
 
 def liste1():
     verdensdeler = ["Afrika", "Asia", "Europa", "Nord-Amerika", "Sør-Amerika", "Oceania", "Antarktika"]
@@ -194,5 +210,3 @@ def liste3():
 def array():
     tall = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     print(tall * 2)
-
-array()
