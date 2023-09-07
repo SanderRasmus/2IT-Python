@@ -1,4 +1,6 @@
 import random as rd
+import numpy as np
+
 
 def hei():
     navn = str(input('Hva heter du? '))
@@ -121,4 +123,40 @@ def terning():
         totalsum = terning1 + terning2
         print("Terningene viser " + str(terning1) + " og " + str(terning2) +". Summen av terningene er: " + str(totalsum))
 
-terning()
+def liste1():
+    verdensdeler = ["Afrika", "Asia", "Europa", "Nord-Amerika", "Sør-Amerika", "Oceania", "Antarktika"]
+    heltall = list(range(1, 51))
+    oddetall = list(range(1, 101, 2))
+
+    print(verdensdeler[0])
+    print(verdensdeler[4])
+    print(verdensdeler[-1])
+    print(heltall)
+    print(oddetall)
+
+def liste2():
+    liste = list(range(1, 21))  
+    partall = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+    
+    print("Opprinnelig liste:", liste)
+
+    for i in partall:
+        if i in liste:
+            liste.remove(i)  # Fjern partall som finnes i partall-listen fra liste
+
+    print("Endret liste:", liste)
+
+def liste3():
+    liste = [1, 6, 3, 4, 2, 3, 5, 7, 8, 3, 3, 3, 2, 3, 4, 6, 7, 3, 4, 3, 3]
+
+    for i in liste:
+        if 3 in liste:
+            liste.remove(3)
+    
+    print(liste)
+
+def array():
+    tall = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    print(tall * 2)
+
+array()
