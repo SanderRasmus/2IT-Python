@@ -123,7 +123,42 @@ def terning():
         totalsum = terning1 + terning2
         print("Terningene viser " + str(terning1) + " og " + str(terning2) +". Summen av terningene er: " + str(totalsum))
 
-<<<<<<< HEAD
+def anvendelse_løkker():
+    total = 0
+    i = 0
+
+    while i <= 100:
+        total = total + i
+        i = i + 1
+    print(total)
+
+def anvendelse_løkker2():
+    total = 0
+    tall = int(input("Vennligst skriv inn et tall: "))
+
+    for i in range(tall):
+        total = total + i
+    
+    print(total)
+
+def nøstet_løkke():
+    for i in range(1, 6):
+        for j in range(1, 11):
+            print(f"{(i * j):4}", end=" ")
+        print("")
+
+def gjennomsnitt_sum():
+    n = int(input("Vennligst skriv inn en tall: "))
+    total = 0
+
+    for i in range (1, n+1):
+        total = total + i
+    gjennomsnitt = total / n
+
+    print(f"Summen av tallene fra 1 til og med {n} er {total}.")
+    print(f"Gjennomsnittet er {gjennomsnitt}")
+
+
 def liste1():
     verdensdeler = ["Afrika", "Asia", "Europa", "Nord-Amerika", "Sør-Amerika", "Oceania", "Antarktika"]
     heltall = list(range(1, 51))
@@ -161,42 +196,3 @@ def array():
     print(tall * 2)
 
 array()
-=======
-def anvendelse_løkker():
-    total = 0
-    i = 0
-
-    while i <= 100:
-        total = total + i
-        i = i + 1
-    print(total)
-
-def anvendelse_løkker2():
-    total = 0
-    tall = int(input("Vennligst skriv inn et tall: "))
-
-    for i in range(tall):
-        total = total + i
-    
-    print(total)
-
-def nøstet_løkke():
-    for i in range(1, 6):
-        for j in range(1, 11):
-            print(f"{(i * j):4}", end=" ")
-        print("")
-
-def gjennomsnitt_sum():
-    n = int(input("Vennligst skriv inn en tall: "))
-    total = 0
-
-    for i in range (1, n+1):
-        total = total + i
-    gjennomsnitt = total / n
-
-    print(f"Summen av tallene fra 1 til og med {n} er {total}.")
-    print(f"Gjennomsnittet er {gjennomsnitt}")
-
-
-gjennomsnitt_sum()
->>>>>>> f0d42847d848657fd36ba09b58d8b333de5856fc
