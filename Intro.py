@@ -222,4 +222,3 @@ def liste4():
     print(verdier)
 
 
-liste4()
