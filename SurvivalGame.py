@@ -1,8 +1,10 @@
 import random as rd
 import os
 import time
+from colorama import Fore
 
 def clear_screen():
+    # Funksjon for å fjerne alt av tekst i terminalen for å gjøre spillet mer oversiktlig. Fungerer for både Windows og andre OSer
     os.system('cls' if os.name == 'nt' else 'clear')
 
 #Spiller Variabler
@@ -16,6 +18,7 @@ def battle(beast, beast_hp, beast_damage):
 
     print("\n[1] Hit the target! (Damage 4-8)\n[2] Use an Item!\n[3] Attempt to flee\n")
     
+    #Repeterer funksjonen til enten spiller eller NPC er død eller unnsluppet.
     while beast_hp > 0 and player_health > 0:
         battle_choice = int(input("Please choose a course of action: "))
 
@@ -28,7 +31,15 @@ def battle(beast, beast_hp, beast_damage):
         if battle_choice == 1:
             beast_hp = beast_hp - player_damage
             print(f"You punched the {beast} and you dealt {player_damage} damage!")
-            print(f"The {beast} has {beast_hp} HP Left.")
+            print(f"The {beast} has {beast_hp} HP Left.\n")
+            time.sleep(2)
+            if beast_hp > 0 and player_health > 0:
+                print(f"The {beast} attacks you, and deals {beast_damage} damage to you!")
+                player_health = player_health - beast_damage
+                print(f"You have now {player_health} hp remaining!\n")
+                time.sleep(1.3)
+                print("\n[1] Hit the target! (Damage 4-8)\n[2] Use an Item!\n[3] Attempt to flee\n")
+
         elif battle_choice == 2:
             print("Wait")
         elif battle_choice == 3:
@@ -36,7 +47,12 @@ def battle(beast, beast_hp, beast_damage):
 
             if flee >= 10:
                 print(f"You have successfully fled the {beast}")
-                break
+            else:
+                print(f"You have failed to flee the {beast}, which made you vulnerable.")
+                time.sleep(2)
+                print(f"The {beast} attacks you, and deals {beast_damage} damage to you!")
+                player_health = player_health - beast_damage
+                print(f"You have now {player_health} hp remaining!")
     
     if beast_hp <= 0:
         print(f"You have successfully defeated the {beast}!")
@@ -46,8 +62,8 @@ def battle(beast, beast_hp, beast_damage):
         clear_screen()
         exit()
         
-
 def main():
+    # Hovedfunksjonen i spillet. Denne Seksjonen som tar av seg teksting, veivalg etc. og kaller på andre funksjoner når det trengs
     clear_screen()
     print("Great to have you on the team Traveler. I will be quick because you have a big journey to set foot in.")
     print("To give you the context of the task, the past few weeks many unknown hostile creatures have appeared around the area and attacked innocent civilians")
@@ -89,8 +105,8 @@ def main():
     elif choice == 3:
         exit()
 
-
 def forest():
+    # Vei valg Venstre - Mørk og tett skog | Fortsetter på historien og kaller på small-encounters for kamper mot npcer.
     clear_screen()
     print("You have choosen to enter the dense and dark forest. ")
     time.sleep(3)
@@ -98,13 +114,12 @@ def forest():
     time.sleep(4)
 
     beast, beast_hp, beast_damage = small_encounter()
-    print(f"\nYou have encountered a wild hostile {beast}! The creature has {beast_hp} HP and deals {beast_damage} damage!")
+    print(f"\nYou have encountered a wild hostile {Fore.RED}{beast}{Fore.RESET}! The creature has {Fore.RED}{beast_hp}{Fore.RESET} HP and deals {Fore.RED}{beast_damage}{Fore.RESET} damage!")
     print("You must defend yourself! Kill the creature before it kills you!")
     battle(beast, beast_hp, beast_damage)
 
-
-
 def small_encounter():
+    #Mindre Encounters listen. Tilfeldig genererer en fiende med ulike stats for hver spawn. Står for mindre encounters og vil bli brukt tidlig i spillet.
     beast_list = ["Boar", "Bat", "Hedgehog", "Minotaur"]
     beast = rd.choice(beast_list)
 
@@ -124,12 +139,14 @@ def small_encounter():
     return beast, beast_hp, beast_damage
 
 def cave():
+    # Hule delen av spillet som vil kalle på encounters og dialog.
     clear_screen()
     print("")
 
 def traveler():
+    # Starten av spillet hvor spilleren (Traveller) får valget av å starte spillet eller ikke.
     clear_screen()
-    print("\nWelcome Traveler to the Streets of Trondheim, I have a challenge for you if you are up for it!")
+    print(f"\nWelcome {Fore.CYAN}Traveler {Fore.RESET} to the Streets of Trondheim, I have a challenge for you if you are up for it!")
     print("If you complete this challenge great rewards may follow. Do you got what it takes?")
     print("\n[1] Start Journey \n[2] No thank you!")
     play = int(input("\nPlease make your choice: "))
@@ -143,8 +160,6 @@ def traveler():
         main()
     else:
         print("Only true warriors can face such challenge, I had a feeling you werent one of them")
-
-
 
 traveler()
 
