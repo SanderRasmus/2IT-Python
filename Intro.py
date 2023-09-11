@@ -210,3 +210,16 @@ def liste3():
 def array():
     tall = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     print(tall * 2)
+
+def liste4():
+    liste = []
+
+    for i in range(1, 21):
+        liste.append(i)
+    
+    verdier = liste[1::2]
+    print(liste)
+    print(verdier)
+
+
+liste4()
