@@ -221,4 +221,22 @@ def liste4():
     print(liste)
     print(verdier)
 
+def ordbok():
+    sommer_ol = [
+        {"årstall": 2004, "vinnertider": {"100 m": 10.93, "200 m": 22.06, "400 m": 49.41}},
+        {"årstall": 2008, "vinnertider": {"100 m": 10.78, "200 m": 21.74, "400 m": 49.62}},
+        {"årstall": 2012, "vinnertider": {"100 m": 10.75, "200 m": 21.88, "400 m": 49.55}},
+        {"årstall": 2016, "vinnertider": {"100 m": 10.71, "200 m": 21.78, "400 m": 49.44}},
+        {"årstall": 2020, "vinnertider": {"100 m": 10.61, "200 m": 21.53, "400 m": 48.36}},
+    ]
 
+    for i in sommer_ol:
+        aar = sommer_ol[-1]["årstall"]
+        vinnertid_100 = i["vinnertider"]["100 m"] 
+        vinnertid_200 = i["vinnertider"]["200 m"] 
+        vinnertid_400 = i["vinnertider"]["400 m"]
+        vinnertid_2020 = sommer_ol[-1]["vinnertider"]
+
+        print(f"I {aar} var vinnertiden på 400 m: {vinnertid_2020}.")
+
+ordbok()
