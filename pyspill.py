@@ -1,6 +1,7 @@
 import pygame as pg
 import math as m
 import time as t
+import random as rd
 
 #Initialiserer PyGame ved start
 pg.init()
@@ -49,16 +50,27 @@ class Ball:
      avstand = m.sqrt(xAvstand2 + yAvstand2)
      return avstand
 
+# Tom Liste
+kuler = []
+
+# Loop som lager 4 baller med random posisjon, samt fart og radius. RD.Uniform henter et random tall fra a til b.
+for i in range(5):
+   x = rd.randint(0, VINDU_BREDDE)
+   y = rd.randint(0, VINDU_HOYDE)
+   fartx = rd.uniform(-0.2, 0.2)
+   farty = rd.uniform(-0.5, 0.2)
+   radius = rd.randint(10, 30)
+   kuler.append(Ball(x, y, fartx, farty, radius, vindu))
 
 # Lager ballen ved bruk av klasse/oppskriften. Her sier vi at x skal være 250, y 250, fart 0.3, radius 30 og at den skal bli tegnet i vindu.
 # Siden vi følger oppskriften til ballen blir også variabelen "vindusobjekt" gjort om til "vindu" variabelen.
-obj1 = Ball(250, 250, 0.3, 0.1, 30, vindu)
-obj2 = Ball(50, 400, 0.2, 0.4, 25, vindu)
+#obj1 = Ball(250, 250, 0.3, 0.1, 30, vindu)
+#obj2 = Ball(50, 400, 0.2, 0.4, 25, vindu)
 
 # Uendelig løkke som avslutter spillet da det avsluttes, eller fortsetter å tegne samt flytte ballen på skjermen. Vi bruker også
 # vindu.fill siden at bakgrunnen også må bli malt/tegnet på nytt, hvis ikke hadded et bare vært en lang oransj strek på skjermen etter sirkelen.
 fortsett = True
-kollisjon_skjedd = False
+
 while fortsett:
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -66,18 +78,26 @@ while fortsett:
 
     vindu.fill((231, 206, 100))
 
-    obj1.tegn()
-    obj1.flytt()
-    obj2.tegn()
-    obj2.flytt()
-    # Regner ut distansen mellom de 2 ballene
-    avstand = obj1.finnAvstand(obj2)
+    # Loop for hvel kule i listen
+    for kule in kuler:
+       kule.tegn()
+       kule.flytt()
 
-    if avstand <= obj1.radius + obj2.radius and not kollisjon_skjedd:
-       print("Kulene traff hverandre!")
-       kollisjon_skjedd = True
-    elif avstand > obj1.radius + obj2.radius:
-       kollisjon_skjedd = False # Resetter kollisjons variabelen etter de har truffet hverandre.
+    # For loop som repeteres for hver kule i listen "kuler".
+    # Så sjekker den videre angående avstanden mellom kulene og sier om de traff hverandre.
+    
+    for i in range(len(kuler)):
+        for j in range(i + 1, len(kuler)):
+            avstand = kuler[i].finnAvstand(kuler[j])
+            if avstand <= kuler[i].radius + kuler[j].radius:
+                print("Kulene traff hverandre!")
+
+
+    #if avstand <= obj1.radius + obj2.radius and not kollisjon_skjedd:
+    #   print("Kulene traff hverandre!")
+    #   kollisjon_skjedd = True
+    #elif avstand > obj1.radius + obj2.radius:
+    #   kollisjon_skjedd = False # Resetter kollisjons variabelen etter de har truffet hverandre.
   
     pg.display.flip()
 
