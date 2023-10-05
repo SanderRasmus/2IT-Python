@@ -1,4 +1,6 @@
 import pygame as pg
+import math as m
+import time as t
 
 #Initialiserer PyGame ved start
 pg.init()
@@ -40,26 +42,43 @@ class Ball:
     #Self.x += self.fartx gjør slik at den flytter seg i samråd med fart. Samme går for self.y += self.farty
     self.x += self.fartx
     self.y += self.farty
+  
+  def finnAvstand(self, obj2):
+     xAvstand2 = (self.x - obj2.x)**2 # x avstand i andre
+     yAvstand2 = (self.y - obj2.y)**2 # y avstand i andre
+     avstand = m.sqrt(xAvstand2 + yAvstand2)
+     return avstand
 
 
 # Lager ballen ved bruk av klasse/oppskriften. Her sier vi at x skal være 250, y 250, fart 0.3, radius 30 og at den skal bli tegnet i vindu.
 # Siden vi følger oppskriften til ballen blir også variabelen "vindusobjekt" gjort om til "vindu" variabelen.
-ball = Ball(250, 250, 0.3, 0.1, 30, vindu)
+obj1 = Ball(250, 250, 0.3, 0.1, 30, vindu)
+obj2 = Ball(50, 400, 0.2, 0.4, 25, vindu)
 
 # Uendelig løkke som avslutter spillet da det avsluttes, eller fortsetter å tegne samt flytte ballen på skjermen. Vi bruker også
 # vindu.fill siden at bakgrunnen også må bli malt/tegnet på nytt, hvis ikke hadded et bare vært en lang oransj strek på skjermen etter sirkelen.
 fortsett = True
+kollisjon_skjedd = False
 while fortsett:
-
     for event in pg.event.get():
         if event.type == pg.QUIT:
             fortsett = False
 
     vindu.fill((231, 206, 100))
 
-    ball.tegn()
-    ball.flytt()
+    obj1.tegn()
+    obj1.flytt()
+    obj2.tegn()
+    obj2.flytt()
+    # Regner ut distansen mellom de 2 ballene
+    avstand = obj1.finnAvstand(obj2)
 
+    if avstand <= obj1.radius + obj2.radius and not kollisjon_skjedd:
+       print("Kulene traff hverandre!")
+       kollisjon_skjedd = True
+    elif avstand > obj1.radius + obj2.radius:
+       kollisjon_skjedd = False # Resetter kollisjons variabelen etter de har truffet hverandre.
+  
     pg.display.flip()
 
 pg.quit()
